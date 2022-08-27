@@ -8,11 +8,9 @@
   text-align: center;
 }
 .section{
-  width: 80rem !important;
+  width: 84rem !important;
 }
-span, li a{
-  color:#5f6368 !important;
-}
+
 .border-red{
   border:solid 2px red;
 }
