@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 productosTotal.json
+generosJSON.json
 
 # Editor directories and files
 .vscode/*

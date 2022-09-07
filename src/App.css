@@ -49,3 +49,10 @@ input[type=number] { -moz-appearance:textfield; }
   transform: scale(1.02);
   transition: ease-in-out 0.2s;
 }
+
+.img-detail{
+  border:solid 2px red;
+  width: 100%;
+  position: relative;
+  z-index: -2;
+}
