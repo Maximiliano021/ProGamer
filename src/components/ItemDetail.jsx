@@ -1,11 +1,14 @@
-export const ItemDetail = ({ id, title, thumbnail, short_description,release_date }) => {
+import ItemCount from './ItemCount'
+
+export const ItemDetail = ({ id, title, thumbnail, short_description, release_date }) => {
     const style = {
-        'opacity':'0.08',
-        'position':'absolute',
-        'margin-left':'6rem',
-        'z-index':'-2'
+        'opacity': '0.08',
+        'position': 'absolute',
+        'margin-left': '6rem',
+        'z-index': '-2'
     }
     let urlVideo = `https://www.freetogame.com/g/${id}/videoplayback.webm`;
+    const price = Math.floor(Math.random() * (8000 - 1000) + 1000)
 
     return (
         <div className="w-full">
@@ -18,9 +21,13 @@ export const ItemDetail = ({ id, title, thumbnail, short_description,release_dat
                             <p>Tiempo promedio de: 72 horas</p>
                         </div>
                         <h1 className="text-7xl">{title}</h1>
-                        <div className="flex gap-6">
-                            <button type="button" className="border-gray-500 cursor-pointer bg-transparent text-white py-4">Agregar a favoritos</button>
-                            <button type="button" className="text-black cursor-pointer bg-white py-4">Comprar</button>
+                        <div className="flex gap-6 items-center">
+                            <button type="button" className="border-gray-500 cursor-pointer bg-transparent text-white py-4">Agregar a deseados</button>
+                            <label htmlFor="my-modal-6" className="btn py-4 btn-primary">Comprar</label>
+                            <div className="">
+                                <label className="block">Precio:</label>
+                                <span className="text-white block text-2xl text-center align-center my-auto">${price}</span>
+                            </div>
                         </div>
                         <div className="flex gap-8">
                             <label className="text-3xl">Excepcional</label>
@@ -39,11 +46,11 @@ export const ItemDetail = ({ id, title, thumbnail, short_description,release_dat
                         </div>
                     </div>
                     <div className="w-5/12 items-center align-center">
-                        <video width="400" className="mx-auto mb-6" src={urlVideo} controls autoPlay/>    
+                        <video width="400" className="mx-auto mb-6" src={urlVideo} controls autoPlay />
                         <div className="text-center items-center align-center flex">
                             <div className="flex mx-auto gap-8">
-                                <img className="w-40 rounded" src={thumbnail}/>
-                                <img className="w-40 rounded" src={thumbnail}/>
+                                <img className="w-40 rounded" src={thumbnail} />
+                                <img className="w-40 rounded" src={thumbnail} />
                             </div>
                         </div>
                     </div>
@@ -56,6 +63,25 @@ export const ItemDetail = ({ id, title, thumbnail, short_description,release_dat
                         <p>PC</p>
                     </div>
                 </div>
+            </div>
+
+            <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+            <div className="modal modal-bottom p-0 sm:modal-middle">
+                    <div className="card card-side bg-base-100 shadow-xl">
+                        <figure><img src={thumbnail} alt="Movie"/></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">Excente eleccion!</h2>
+                            <p>Desea agregar el juego al carrito de compras?</p>
+                            <div className='text-start border-t-2'>
+                                <label>PRECIO TOTAL: $ {price}</label>
+                                <div className="card-actions justify-between items-center">
+                                    <ItemCount stock="6" initial="1"/>
+                                    <label htmlFor="my-modal-6" className="btn btn-primary">Si agregar</label>
+                                </div>
+                            </div>
+                        </div>
+                        <label htmlFor="my-modal-6" className="btn">Salir!</label>
+                    </div>
             </div>
         </div>
     )
