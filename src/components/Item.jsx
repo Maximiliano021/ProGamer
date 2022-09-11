@@ -1,27 +1,25 @@
 import { Link } from 'react-router-dom'
-import ItemCount from './ItemCount'
+import Xbox from '../assets/Xbox.svg'
+import PlayStation from '../assets/PlayStation.svg'
 
-export const Item = ({ id, title, thumbnail,developer, game_url, genre }) => {
-    const price = Math.floor(Math.random() * (8000 - 1000) + 1000)
+
+export const Item = ({ id, title, thumbnail,developer, genre }) => {
     return (
-        <div id={id} className="max-w-lg card">
-            <div className="bg-zinc-700 rounded-lg max-w-sm p-4">
-                <a className="w-full h-40 flex mx-auto">
-                    <img className="rounded mx-auto" src={thumbnail} alt={title} />
-                </a>
-                <div className="p-2 text-slate-300">
-                    <h5 className="font-bold text-2xl text-white tracking-tight mb-2">{title}</h5>
-                    < div className='text-start grid gap-2'>
-                        <p className="">Genero: {genre}</p>
-                        <p className="">Desarrollado por: {developer}</p>
-                    </div>
-                    <h3 className="font-bold my-4 text-xl text-white">$ {price}</h3>
-                    <div className="w-full flex justify-between">
-                        <Link to={`/ProGamer/shop/item/${id}`} className="text-white bg-blue-700 hover:opacity-75 hover:text-white font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center" >
-                            Ver Mas
-                        </Link>
-                        <ItemCount stock="4" initial="1" />
-                    </div>
+        <div id={id} className="card bg-zinc-900 bg-gray-50 hover:bg-none">
+            <Link to={`/ProGamer/shop/item/${id}`} className="mx-auto">
+                <img className="rounded-t mx-auto w-full" src={thumbnail} alt={title} />
+            </Link>
+            <div className="text-start py-2 p-2 grid gap-2">
+                <div className='flex gap-4'>
+                    <img src={Xbox} alt="" className='w-5'/>
+                    <img src={PlayStation} alt="" className='w-5'/>
+                </div>
+                <p className="text-xl text-white">{title}</p>
+                <div className='text-start text-gray-400 flex items-center gap-4 justify-between'>
+                    <p className="text-xs">Desarrollado por: {developer}</p>
+                    <Link to={`/ProGamer/shop/item/${id}`} className="text-white btn border-t-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:opacity-75 hover:text-white font-medium rounded-lg text-xs p-1 text-center justify-center inline-flex items-center" >
+                    Ver Mas
+                    </Link>
                 </div>
             </div>
         </div>

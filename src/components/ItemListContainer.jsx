@@ -1,7 +1,7 @@
 //la que hace conexion a la base de datos
 import { React, useState, useEffect } from 'react'
 import { ItemList } from './ItemList'
-import productsJSON from '../productos.json'
+import productsJSON from '../productos'
 
 
 function ItemListContainer() {
@@ -17,7 +17,7 @@ function ItemListContainer() {
 	useEffect(() => {
 		getData(productsJSON, 500)
 			.then(res => setProducts(res))
-			.catch(err => console.log(err, 'error che'))
+			.catch(err => console.log(err, 'error'))
 	}, [])
 
 	

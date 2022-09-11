@@ -1,11 +1,11 @@
-import {ItemDetail} from './ItemDetail'
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import games from '../productos'
+import {ItemList} from './ItemList'
 
-export const ItemDetailContainer = () =>{
-    const [item, setItem] = useState({}) 
-	const { id } = useParams()
+export const ItemFilterContainer = () =>{
+    const [item, setItem] = useState([])
+	const { genre } = useParams()
 
 	useEffect(() => {
 		getItem().then(
@@ -14,19 +14,18 @@ export const ItemDetailContainer = () =>{
 					setItem(data)
 			}
 		)
-	}, [id])
+	}, [genre])
 
 	const getItem = () => {
 		return new Promise(resolve => {
 			setTimeout(() => {
-				resolve( games.find(p => p.id == id) )
+				resolve( games.filter(p => p.genre == genre ) )
 			}, 500)
 		})
 	}
-
 	return (
 		<div className='w-full'>
-			<ItemDetail {...item}/>
+			<ItemList items={item}/>
 		</div>
 	)
 }
