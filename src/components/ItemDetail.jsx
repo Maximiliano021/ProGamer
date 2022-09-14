@@ -1,26 +1,35 @@
 import ItemCount from './ItemCount'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
 
 export const ItemDetail = ({ id, title, thumbnail, short_description, release_date, price }) => {
 	const style = {
 		'opacity': '0.3',
 		'position': 'absolute',
-		'margin-left': '6rem',
-		'z-index': '-2'
+		'marginLeft': '6rem',
+		'zIndex': '-1'
 	}
 	let urlVideo = `https://www.freetogame.com/g/${id}/videoplayback.webm`;
+	const { addItem, isInCart } = useContext(CartContext)
+	const onAdd = (cantidad) => {
+		isInCart(id)
+		addItem({ id, thumbnail, title, cantidad })
+	}
 
 	window.scrollTo(0, 0);
+
 	return (
 		<div className="w-full">
 			<img className="w-4/6 shadow blur" src={thumbnail} style={style} />
-			<div id="detail" className="w-5/6 mx-auto items-start grid gap-8 text-white p-6" >
+			<div id="detail" className="w-full lg:w-5/6 mx-auto items-start grid gap-8 text-white p-6" >
 				<div className="w-full flex gap-10">
-					<div className="w-7/12 text-start grid gap-8">
+					<div className="2xl:w-7/12 text-start grid gap-8 w-full">
 						<div className="flex gap-8">
-							<span className="bg-white text-black w-40 rounded text-center">{release_date}</span>
+							<label className="bg-white text-black w-40 rounded text-center self-center">{release_date}</label>
 							<p>Tiempo promedio de: 72 horas</p>
 						</div>
-						<h1 className="text-7xl">{title}</h1>
+						<h1 className="text-4xl lg:text-7xl">{title}</h1>
 						<div className="flex gap-6 items-center">
 							<button type="button" className="border-gray-500 cursor-pointer bg-transparent text-white py-4">Agregar a deseados</button>
 							<label htmlFor="my-modal-6" className="btn py-4 btn-primary">Comprar</label>
@@ -45,7 +54,7 @@ export const ItemDetail = ({ id, title, thumbnail, short_description, release_da
 							<p>{short_description}</p>
 						</div>
 					</div>
-					<div className="w-5/12 items-center align-center">
+					<div className="w-5/12 items-center align-center hidden 2xl:block">
 						<video width="400" className="mx-auto mb-6 cursor-pointer rounded-lg" src={urlVideo} controls autoPlay />
 						<div className="text-center items-center align-center flex">
 							<div className="flex mx-auto gap-8">
@@ -64,24 +73,25 @@ export const ItemDetail = ({ id, title, thumbnail, short_description, release_da
 			</div>
 
 			<input type="checkbox" id="my-modal-6" className="modal-toggle" />
-			<div className="modal modal-bottom p-0 sm:modal-middle">
-				<div className="card card-side dark:bg-base-100 bg-base-100 shadow-xl">
-					<figure><img src={thumbnail} alt="Movie" /></figure>
-					<div className="card-body">
-						<h2 className="card-title">Excente eleccion!</h2>
-						<p>Desea agregar el juego al carrito de compras?</p>
-						<div className='text-start border-t-2'>
-							<label>PRECIO TOTAL: $ {price}</label>
-							<div className="card-actions justify-between items-center">
-								<ItemCount stock="6" initial="1" price={price} />
-								{console.log({ price })}
-								<label htmlFor="my-modal-6" className="btn btn-primary">Si agregar</label>
+
+				<div className="modal top-1/4 md:top-0 modal-center p-0 sm:modal-middle">
+					<div className="card card-side text-white bg-gradient-to-r from-blue-200 to-black shadow-xl">
+						<figure><img className='hidden md:block' src={thumbnail} alt="Movie" /></figure>
+						<div className="card-body">
+							<h2 className="card-title">Excente eleccion!</h2>
+							<p>Desea agregar el juego al carrito de compras?</p>
+							<p className="border-b-2 w-full"></p>
+							<div>
+								{
+									isInCart(id)? 
+										<Link to={'/ProGamer/cart'} className="btn btn-primary hover:text-white w-4/6 mx-auto">Ir a checkout</Link> 
+									:	<ItemCount stock="6" initial="1" price={price} onAdd={onAdd} />
+								}
 							</div>
 						</div>
+						<label htmlFor="my-modal-6" className="btn text-white absolute right-0 sm:flex">Salir!</label>
 					</div>
-					<label htmlFor="my-modal-6" className="btn">Salir!</label>
 				</div>
-			</div>
 		</div>
 	)
 }

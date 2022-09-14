@@ -9,7 +9,7 @@ const NavBar = () => {
 				<Link to={'/ProGamer/'} className="logo">
                     <img src={logo} className="w-36" />
                 </Link>
-				<div id="search" className="mx-auto w-1/4">
+				<div id="search" className="mx-auto hidden lg:block lg:w-1/4">
 					<form className="w-full">
 						<label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
 						<div className="relative">

@@ -3,11 +3,10 @@ import { React, useState, useEffect } from 'react'
 import { ItemList } from './ItemList'
 import productsJSON from '../productos'
 
-
 function ItemListContainer() {
-  const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-  const getData = (data, time) =>
+	const getData = (data, time) =>
 		new Promise((resolve, reject) => {
 			setTimeout(() => {
 				data ? resolve(data) : reject("error");
@@ -15,12 +14,12 @@ function ItemListContainer() {
 		});
 
 	useEffect(() => {
-		getData(productsJSON, 500)
+		getData(productsJSON, 100)
 			.then(res => setProducts(res))
 			.catch(err => console.log(err, 'error'))
 	}, [])
 
-	
+
 	return (
 		<div>
 			<ItemList items={products} />

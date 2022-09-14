@@ -7,7 +7,7 @@ export const Aside = () => {
 	generos = [...new Set(generos)]
 
 	return (
-		<aside className="w-44 py-4" aria-label="Sidebar">
+		<aside className="w-44 py-4 hidden sm:block" aria-label="Sidebar">
 			<div className="px-3 py-4 overflow-y-auto sticky text-white rounded">
 				<ul className="space-y-2">
 					<li>
@@ -102,8 +102,8 @@ export const Aside = () => {
 					<label>Categorias</label>
 					<ul className="text-start">
 						{
-							generos.map((gnro, key) =>
-								<li className="my-2" id={key}><Link className="flex-1 ml-3  whitespace-nowrap text-white text-start" to={`/ProGamer/categ/${gnro}`}>{gnro}</Link></li>)
+							generos.map((gnro,index) =>
+								<li className="my-2" key={index}><Link className="flex-1 ml-3  whitespace-nowrap text-white text-start" to={`/ProGamer/categ/${gnro}`}>{gnro}</Link></li>)
 						}
 					</ul>
 				</div>
