@@ -2,6 +2,7 @@
 import { React, useState, useEffect } from 'react'
 import { ItemList } from './ItemList'
 import productsJSON from '../productos'
+import { Select } from './Select';
 
 function ItemListContainer() {
 	const [products, setProducts] = useState([]);
@@ -21,7 +22,8 @@ function ItemListContainer() {
 
 
 	return (
-		<div>
+		<div className="w-full">
+			<Select/>
 			<ItemList items={products} />
 		</div>
 	)

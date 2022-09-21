@@ -23,7 +23,7 @@ function CartWidget() {
 							<img className="w-10 bg-contain" src={game.thumbnail} />
 							<div className="w-9/12 content-between grid">
 								<div className="text-xs">{game.title}</div>
-								<p className="text-white">{game.cantidad}</p>
+								<p className="text-black">{game.cantidad}</p>
 							</div>
 							<button className="btn btn-primary p-1 h-1" id={game.id} onClick={addHandler} >x</button>
 						</div>)

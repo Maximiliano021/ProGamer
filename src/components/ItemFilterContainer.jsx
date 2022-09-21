@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import games from '../productos'
 import {ItemList} from './ItemList'
+import { Select } from './Select';
+
 
 export const ItemFilterContainer = () =>{
     const [item, setItem] = useState([])
@@ -25,6 +27,7 @@ export const ItemFilterContainer = () =>{
 	}
 	return (
 		<div className='w-full'>
+			<Select/>
 			<ItemList items={item}/>
 		</div>
 	)
