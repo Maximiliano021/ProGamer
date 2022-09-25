@@ -1,8 +1,8 @@
 import logo from '../assets/logo.png'
-import CartWidget from './CartWidget';
+import { CartWidget } from './CartWidget';
 import { Link } from 'react-router-dom'
 
-const NavBar = () => {
+export const NavBar = () => {
 	return (
 		<div className="block rounded-lg mx-auto mb-4">
 			<div id="header" className="w-full flex justify-between p-2">
@@ -46,4 +46,3 @@ const NavBar = () => {
 		</div>
 	)
 }
-export default NavBar

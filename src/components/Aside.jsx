@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import productos from '../productos'
+import { CategoriesList } from "./CategoriesList"
 
 export const Aside = () => {
 	let generos = []
@@ -98,7 +99,8 @@ export const Aside = () => {
 						</a>
 					</li>
 				</ul>
-				<div className="border-t my-4">
+				<CategoriesList/>
+				{/* <div className="border-t my-4">
 					<label>Categorias</label>
 					<ul className="text-start">
 						{
@@ -106,7 +108,7 @@ export const Aside = () => {
 								<li className="my-2" key={index}><Link className="flex-1 ml-3  whitespace-nowrap text-white text-start" to={`/ProGamer/categ/${gnro}`}>{gnro}</Link></li>)
 						}
 					</ul>
-				</div>
+				</div> */}
 			</div>
 		</aside>
 	)

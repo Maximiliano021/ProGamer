@@ -18,7 +18,7 @@ export const Select = () => {
             {
                 filter != '' && <Link to={`/ProGamer/categ/${filter}`} className="btn btn-primary">Filtrar</Link>
             }
-		    <select className="form-select cursor-pointer appearance-none text-center block w-full px-3 py-1.5 text-base font-normal
+		    {/* <select className="form-select cursor-pointer appearance-none text-center block w-full px-3 py-1.5 text-base font-normal
 		      text-gray-700
 		      bg-white bg-clip-padding bg-no-repeat
 		      border border-solid border-gray-300
@@ -31,7 +31,7 @@ export const Select = () => {
 				{
 					generos.map(gen => <option value={gen} className="cursor-pointer" onClick={handlerClick}>{gen}</option>)
 				}
-		    </select>
+		    </select> */}
 		  </div>
 		</div>
 	)

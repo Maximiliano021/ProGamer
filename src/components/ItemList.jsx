@@ -3,7 +3,6 @@ import { Loading } from './Loading'
 
 export const ItemList = ({ items }) => {
 	window.scrollTo(0, 0);
-
 	return (
 		<div>
 			<h2 className="text-center text-white text-4xl py-4">LISTA DE JUEGOS</h2>
