@@ -6,7 +6,7 @@ import { Aside } from './components/Aside'
 import { ItemFilterContainer } from './components/ItemFilterContainer'
 import { UserContext } from './context/UserContext'
 import { Cart } from './components/Cart'
-import { ProductsContainer } from './firebase/ProductsContainer'
+import { ItemContainer } from './firebase/ItemContainer'
 
 function App() {
 	return (
@@ -17,10 +17,10 @@ function App() {
 					<div className="flex gap-4">
 						<Aside />
 						<Routes>
-							<Route path="/ProGamer/" element={<ProductsContainer />} />
-							<Route path='/ProGamer/categ/:genre' element={<ItemFilterContainer />} />
-							<Route path="/ProGamer/cart" element={<Cart />} />
-							<Route path='/ProGamer/detail/:id' element={<ItemDetailContainer />} />
+							<Route path="/" element={<ItemContainer />} />
+							<Route path='/categ/:genre' element={<ItemFilterContainer />} />
+							<Route path="/cart" element={<Cart />} />
+							<Route path='/detail/:id' element={<ItemDetailContainer />} />
 						</Routes>
 					</div>
 				</BrowserRouter>
