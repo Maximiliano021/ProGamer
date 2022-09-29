@@ -5,9 +5,11 @@ import { CartContext } from '../context/CartContext'
 
 export const ItemDetail = ({ id, title, img, description, price, clip, platform, genre }) => {
 	const { addItem, isInCart } = useContext(CartContext)
+	
 	const onAdd = (cantidad) => {
+		const total = price * cantidad
 		isInCart(id)
-		addItem({ id, img, title, cantidad, price })
+		addItem({ id, img, title, cantidad, price, total })
 	}
 	const style = {
 		'opacity': '0.3',
@@ -79,7 +81,7 @@ export const ItemDetail = ({ id, title, img, description, price, clip, platform,
 						<div>
 							{
 								isInCart(id) ?
-									<Link to={'/cart'} className="btn btn-primary hover:text-white w-4/6 mx-auto">Ir a checkout</Link>
+									<Link to={'/cart'} className="btn btn-primary hover:text-white w-4/6 mx-auto">Ir a comprar</Link>
 									: <ItemCount stock="6" initial="1" price={price} onAdd={onAdd} />
 							}
 						</div>

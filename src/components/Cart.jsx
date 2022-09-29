@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
+import { OrderForm } from "./OrderForm"
 
 export const Cart = () => {
     const { games, removeItem } = useContext(CartContext)
-    const addHandler = (e) => {
+    const removeHandler = (e) => {
         removeItem(e.target.id)
     }
+
     return (
         <div className="w-full">
             <h1 className="text-white mb-10">Todos los productos que estan en carrito</h1>
@@ -24,25 +26,12 @@ export const Cart = () => {
                                         <p className='text-white text-xl'>Precio de: $ {game.cantidad * game.price} </p>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary h-6" id={game.id} onClick={addHandler}>x</button>
+                                <button className="btn btn-primary h-6" id={game.id} onClick={removeHandler}>x</button>
                             </article>
                         )}
                     </section>
                     <div className="block p-6 rounded-lg shadow-lg bg-gray-300 max-w-full mx-auto">
-                        <form>
-                            <h1 className="text-4xl mb-8">Informacion personal de compra</h1>
-                            <div className="form-group mb-6">
-                                <input type="text" className="form-control text-center block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="name" placeholder="Nombre" />
-                            </div>
-                            <div className="form-group mb-6">
-                                <input type="email" className="form-control text-center block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="name" placeholder="Email" />
-                            </div>
-                            <div className="form-group mb-6">
-                                <input type="text" className="form-control text-center block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="phone" placeholder="Telefono" />
-                            </div>
-
-                            <button type="submit" className="px-6 py-2.5 btn btn-primary bg-purple-700 text-white font-medium text-xs uppercase rounded shadow-md  hover:shadow-lg focus:shadow-lg  transition duration-150 ease-in-out">Enviar pedido</button>
-                        </form>
+                        <OrderForm/>
                     </div>
                 </div>
             </div>

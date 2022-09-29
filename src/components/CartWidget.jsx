@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext"
 export const CartWidget = () => {
 	const { games, removeItem, clear } = useContext(CartContext)
 
-	const addHandler = (e) => {
+	const removeHandler = (e) => {
 		removeItem(e.target.id)
 	}
 	let totalItems = 0;
@@ -31,7 +31,7 @@ export const CartWidget = () => {
 									<p className=' text-white'>$ {game.price * game.cantidad} </p>
 								</div>
 							</div>
-							<button className="btn btn-primary p-1 h-1" id={game.id} onClick={addHandler} >x</button>
+							<button className="btn btn-primary p-1 h-1" id={game.id} onClick={removeHandler} >x</button>
 						</div>) : <p>No hay juegos agregados</p>
 					}
 					<div className="card-actions">
