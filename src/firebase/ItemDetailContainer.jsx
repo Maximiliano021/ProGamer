@@ -1,7 +1,8 @@
-import { ItemDetail } from './ItemDetail'
+import { ItemDetail } from '../components/ItemDetail'
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { Aside } from '../components/Aside'
 
 export const ItemDetailContainer = () => {
 	const [game, setGame] = useState({})
@@ -20,7 +21,7 @@ export const ItemDetailContainer = () => {
 	}
 
 	return (
-		<div className='w-full'>
+		<div className='w-full sm:flex'>
 			<ItemDetail {...game} id={id} />
 		</div>
 	)

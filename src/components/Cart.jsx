@@ -11,30 +11,38 @@ export const Cart = () => {
 
     return (
         <div className="w-full">
-            <h1 className="text-white mb-10">Todos los productos que estan en carrito</h1>
-            <div className="w-5/6 mx-auto">
-                <Link to={'/'} className="btn btn-primary text-white flex">Ir al menu principal</Link>
-                <div className="2xl:flex mt-10 gap-2">
-                    <section className=" text-white bg-gradient-to-r from-blue-800 to-gray-500 rounded-lg grid gap-10 p-2">
-                        {games.map(game =>
-                            <article className="flex justify-between w-4/5 p-4 text-white bg-gray-700 rounded-lg gap-10 m-auto" key={game.id}>
-                                <img className="w-1/6 rounded bg-contain" src={game.img} />
-                                <div className="w-9/12 gap-10 grid flex-col items-center content-center">
-                                    <p className="text-center text-4xl font-bold">{game.title}</p>
-                                    <div className='flex justify-between'>
-                                        <p className="text-white text-xl">Cantidad de: {game.cantidad}</p>
-                                        <p className='text-white text-xl'>Precio de: $ {game.cantidad * game.price} </p>
-                                    </div>
-                                </div>
-                                <button className="btn btn-primary h-6" id={game.id} onClick={removeHandler}>x</button>
-                            </article>
-                        )}
-                    </section>
-                    <div className="block p-6 rounded-lg shadow-lg bg-gray-300 max-w-full mx-auto">
-                        <OrderForm/>
+            {
+                !games.length? <h1 className="text-white mb-10 text-3xl">No tienes nada agregado para hacer una compra</h1>
+                : <div>
+                    <h1 className="text-white mb-10 text-3xl">Todos los productos que estan en carrito</h1>
+                    <div className="px-4 mx-auto">
+                        <Link to={'/'} className="btn btn-primary text-white flex">Ir al menu principal</Link>
+                        <div className="2xl:flex block mt-10 grid xl:gap-4 gap-10">
+                            <section className="text-white mx-auto w-full bg-gradient-to- 2xl:w-3/5 rounded-lg grid gap-4">
+                                {games.map(game =>
+                                    <article className="flex justify-between w-full xl:w-4/5 md:w-full text-white bg-gray-500 rounded-lg gap-1 m-auto" key={game.id}>
+                                        <Link to={`/detail/${game.id}`} className="w-44 items-center flex p-1">
+                                            <img className="rounded h-32 rounded hover:border-indigo-500/100 hover:border hover:transition transition ease-in-out" src={game.img} />
+                                        </Link>
+                                        <div className="w-full gap-10 grid flex-col items-center content-center">
+                                            <p className="md:text-center text-start md:text-3xl sm:text-xl text-lg font-bold">{game.title}</p>
+                                            <div className='block text-start md:flex justify-between grid gap-2 pb-2'>
+                                                <p className="text-white md:text-xl sm:text-lg text-sm">Cantidad: {game.cantidad}</p>
+                                                <p className='text-white md:text-xl sm:text-lg text-sm font-bold'>Precio:  ${game.cantidad * game.price} </p>
+                                            </div>
+                                        </div>
+                                        <button className="btn btn-primary" id={game.id} onClick={removeHandler}>x</button>
+                                    </article>
+                                )}
+                            </section>
+                            <div className="block shadow-lg max-w-full mx-auto">
+                                <OrderForm/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            
 
         </div>
     )

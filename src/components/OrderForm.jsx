@@ -4,24 +4,34 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import Swal from "sweetalert2"
 
 export const OrderForm = () => {
-    const { games } = useContext(CartContext)
+    const { games, clear } = useContext(CartContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [number, setNumber] = useState(0)
     let total = 0
     games.map(game => total += game.total)
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        games == 0 ? viewError() : sendOrder()
-    }
+        let verfNumber = /^[-+]?[0-9]+$/
+        let verfEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
 
-    const viewError = () => {
-        Swal.fire({
-            title: 'Error!',
-            text: 'Carrito de juegos se encuentra vacio',
-            icon: 'error'
-        })
+        if (!email.match(verfEmail))
+            return Swal.fire({
+                title: 'Error Email!',
+                text: 'Error en el email',
+                icon: 'error'
+            })
+
+        if (!number.match(verfNumber))
+            return Swal.fire({
+                title: 'Error Numero!',
+                text: 'Error en el tipo de numero telefonico',
+                icon: 'error'
+            })
+        
+        sendOrder()
     }
 
     const viewConfirmation = (id) => {
@@ -40,12 +50,12 @@ export const OrderForm = () => {
         }
         const ordersCollection = collection(getFirestore(), "orders");
         addDoc(ordersCollection, order)
-            .then(({ id }) => { viewConfirmation(id).then(() => { window.location.href = '/' }) })
+            .then(({ id }) => { viewConfirmation(id).then(() => { window.location.href = '/'; clear() }) })
     }
 
 
     return (
-        <form onSubmit={handleSubmit} id="form" className="grid gap-6">
+        <form onSubmit={handleSubmit} id="form" className="grid gap-6 text-black bg-gray-300 p-6 rounded-lg">
             <h1 className="text-4xl mb-4">Informacion personal de compra</h1>
             <div className="form-group">
                 <input type="text" onChange={e => setName(e.target.value)} required className="form-control text-center block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="name" placeholder="Nombre" />
@@ -57,7 +67,7 @@ export const OrderForm = () => {
                 <input type="text" onChange={e => setNumber(e.target.value)} required className="form-control text-center block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="phone" placeholder="Telefono" />
             </div>
 
-            <button type="submit" className="px-6 py-2.5 btn btn-primary bg-purple-700 text-white font-medium text-xs uppercase rounded shadow-md  hover:shadow-lg focus:shadow-lg  transition duration-150 ease-in-out">Enviar pedido</button>
+            <button type="submit" className="btn btn-primary bg-primary">Enviar pedido</button>
         </form>
     )
 }

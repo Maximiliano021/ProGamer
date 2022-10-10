@@ -54,10 +54,12 @@ input[type=number] { -moz-appearance:textfield; }
   transition:0.2s ease-in-out;
 }
 
-
 .img-detail{
   border:solid 2px #199e0d;
   width: 100%;
   position: relative;
   z-index: -2;
+}
+.bg-primary{
+  background-color: #570df8 !important;
 }

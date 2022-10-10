@@ -24,12 +24,12 @@ export const Aside = () => {
 	}
 
 	return (
-		<aside className="w-60 py-4 hidden sm:block" aria-label="Sidebar">
+		<aside className="block w-full sm:w-60 lg:py-4 md:block" aria-label="Sidebar">
 			<div className="px-3 py-4 overflow-y-auto sticky text-white rounded">
-				<ul className="space-y-2">
-					<li>
+				<ul className="w-full sm:w-auto items-center flex sm:block gap-4 sm:gap-0">
+					<li className="border-violet-300 border sm:border-none p-1 rounded-full">
 						<Link to={'/'}
-							className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-700">
+							className="flex items-center p-2 text-base font-normal text-gray-900 rounded-full  hover:bg-gray-700">
 							<svg className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
 								fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -42,8 +42,8 @@ export const Aside = () => {
 					</li>
 					{
 						generos.map(gnro =>
-							<li key={gnro.id}>
-								<Link className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-700" to={`/categ/${gnro.name}`}>
+							<li key={gnro.id} className="border-violet-300 border sm:border-none p-1 rounded-full">
+								<Link className="flex items-center p-2 text-base rounded-full font-normal text-gray-900 rounded-full dark:text-white hover:bg-gray-700" to={`/categ/${gnro.name}`}>
 									<svg className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
 										fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 										<path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
@@ -54,9 +54,9 @@ export const Aside = () => {
 							</li>
 						)
 					}
-					<li>
+					<li className="border-violet-300 border sm:border-none p-1 rounded-full">
 						<div target="_blank"
-							className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-700">
+							className="flex items-center p-2 text-base font-normal text-gray-900 rounded-full dark:text-white hover:bg-gray-700">
 							<svg className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
 								fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 								<path
@@ -70,6 +70,7 @@ export const Aside = () => {
 							<span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{games.length}</span>
 						</div>
 					</li>
+					
 				</ul>
 			</div>
 		</aside>

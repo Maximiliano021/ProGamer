@@ -16,6 +16,7 @@ export const ItemContainer = () => {
             setGames(data.docs.map(d => ( {id: d.id, ...d.data()} )));
         })
     }
+
     return (
         <div className='w-full'>
             <ItemList items={games} />

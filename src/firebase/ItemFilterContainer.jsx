@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import { ItemList } from './ItemList'
+import { ItemList } from '../components/ItemList'
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 export const ItemFilterContainer = () => {
