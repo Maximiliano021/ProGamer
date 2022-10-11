@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
-	let [cant, setCant] = useState(Number(initial))
+	let [cant, setCant] = useState(initial)
 
 	const handlerDecrease = () => {
-		cant != 1 ? setCant(cant -= 1) : '';
+		setCant(cant - 1);
 	}
 	const handlerIncrease = () => {
-		cant != Number(stock) ? setCant(cant += 1) : console.log('sin stock')
+		setCant(cant+1)
 	}
 
 	return (
@@ -17,7 +17,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 					-
 				</button>
 				<span className="outline-none focus:outline-none justify-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700">{cant}</span>
-				<button data-action="increment" className="my-auto items-center flex p-1 border bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-5 rounded cursor-pointer outline-none" onClick={handlerIncrease}>
+				<button disabled={cant >= stock} data-action="increment" className="my-auto items-center flex p-1 border bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-5 rounded cursor-pointer outline-none" onClick={handlerIncrease}>
 					+
 				</button>
 			</div>

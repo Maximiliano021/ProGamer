@@ -20,15 +20,15 @@ export const Cart = () => {
                         <div className="2xl:flex block mt-10 grid xl:gap-4 gap-10">
                             <section className="text-white mx-auto w-full bg-gradient-to- 2xl:w-3/5 rounded-lg grid gap-4">
                                 {games.map(game =>
-                                    <article className="flex justify-between w-full xl:w-4/5 md:w-full text-white bg-gray-500 rounded-lg gap-1 m-auto" key={game.id}>
+                                    <article className="flex justify-between w-full xl:w-4/5 md:w-full text-white bg-zinc-900 rounded-lg gap-1 m-auto" key={game.id}>
                                         <Link to={`/detail/${game.id}`} className="w-44 items-center flex p-1">
                                             <img className="rounded h-32 rounded hover:border-indigo-500/100 hover:border hover:transition transition ease-in-out" src={game.img} />
                                         </Link>
                                         <div className="w-full gap-10 grid flex-col items-center content-center">
                                             <p className="md:text-center text-start md:text-3xl sm:text-xl text-lg font-bold">{game.title}</p>
                                             <div className='block text-start md:flex justify-between grid gap-2 pb-2'>
-                                                <p className="text-white md:text-xl sm:text-lg text-sm">Cantidad: {game.cantidad}</p>
-                                                <p className='text-white md:text-xl sm:text-lg text-sm font-bold'>Precio:  ${game.cantidad * game.price} </p>
+                                                <p className="text-white md:text-xl sm:text-lg text-sm">Cantidad: {game.cant}</p>
+                                                <p className='text-white md:text-xl sm:text-lg text-sm font-bold'>Precio:  ${game.cant * game.price} </p>
                                             </div>
                                         </div>
                                         <button className="btn btn-primary" id={game.id} onClick={removeHandler}>x</button>

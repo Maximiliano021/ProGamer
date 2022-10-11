@@ -3,20 +3,18 @@ import { Link } from 'react-router-dom'
 import { CartContext } from "../context/CartContext"
 
 export const CartWidget = () => {
-	const { games, removeItem, clear } = useContext(CartContext)
+	const { games, removeItem, clear, totalProducts } = useContext(CartContext)
 
 	const removeHandler = (e) => {
 		removeItem(e.target.id)
 	}
-	let totalItems = 0;
-	games.map(game => totalItems += game.cantidad)
 
 	return (
 		<div className="dropdown dropdown-end">
 			<label tabIndex={0} className="btn btn-ghost btn-circle">
 				<div className="indicator">
 					<i className='bx bxs-cart bx-sm text-white'></i>
-					<span className="badge badge-sm bg-primary indicator-item">{totalItems}</span>
+					<span className="badge badge-sm bg-primary indicator-item">{totalProducts() || ''}</span>
 				</div>
 			</label>
 			<div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-slate-800 shadow">

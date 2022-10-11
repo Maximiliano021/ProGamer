@@ -5,12 +5,12 @@ import { CartContext } from '../context/CartContext'
 
 
 export const ItemDetail = ({ id, title, img, description, price, clip, platform, genre }) => {
-	const { addItem, isInCart } = useContext(CartContext)
+	const { addItem, isInCart, totalPrice } = useContext(CartContext)
 	
-	const onAdd = (cantidad) => {
-		const total = price * cantidad
+	const onAdd = (cant) => {
+		const total = totalPrice()
 		isInCart(id)
-		addItem({ id, img, title, cantidad, price, total })
+		addItem({ id, img, title, cant, price, total })
 	}
 	const style = {
 		'opacity': '0.3',
@@ -33,7 +33,7 @@ export const ItemDetail = ({ id, title, img, description, price, clip, platform,
 						</div>
 						<div className="flex gap-8 items-center">
 							<label className="bg-white text-black w-40 rounded text-center self-center py-1">{genre}</label>
-							<p>Tiempo promedio de: 72 horas</p>
+							<p>Tiempo promedio de juego: 72 horas</p>
 						</div>
 						<div className='flex justify-between items-center'>
 							<h1 className="text-4xl lg:text-7xl">{title}</h1>
@@ -98,7 +98,7 @@ export const ItemDetail = ({ id, title, img, description, price, clip, platform,
 							{
 								isInCart(id) ?
 									<Link to={'/cart'} className="btn btn-primary hover:text-white w-4/6 mx-auto">Ir a checkout</Link>
-									: <ItemCount stock="6" initial="1" price={price} onAdd={onAdd} />
+									: <ItemCount stock={6} initial={1} price={price} onAdd={onAdd} />
 							}
 						</div>
 					</div>
